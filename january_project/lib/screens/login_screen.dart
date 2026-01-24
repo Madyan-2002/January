@@ -12,10 +12,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool pass = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(205, 215, 178, 147),
+      backgroundColor: ColorClass.backG,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -41,7 +42,16 @@ class _LoginScreenState extends State<LoginScreen> {
               labl: 'Password',
               hint: '**********',
               preIcon: Icons.lock,
-              sfxIcon: Icon(Icons.visibility_off),
+              sfxIcon: InkWell(
+                onTap: () {
+                  setState(() {
+                    pass = !pass;
+                  });
+                },
+                child: pass
+                    ? Icon(Icons.visibility_off)
+                    : Icon(Icons.visibility),
+              ),
             ),
             SizedBox(height: 10),
             ElevatedButton(
@@ -53,9 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 setState(() {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 });
               },

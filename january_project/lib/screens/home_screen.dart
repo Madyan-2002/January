@@ -4,6 +4,8 @@ import 'package:january_project/Data/db.dart';
 import 'package:january_project/styles/color_class.dart';
 import 'package:january_project/widget/custom_container.dart';
 import 'package:january_project/widget/custom_text_field.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,9 +16,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String selectedFilter = 'All';
+  bool changeColor = true;
+   var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorClass.backG,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -35,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     IconButton(
                       icon: Icon(
-                        Icons.notifications_none,
+                        Icons.notifications_sharp,
                         color: ColorClass.icons,
                       ),
                       onPressed: () {},
@@ -49,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     autoPlay: true,
                     autoPlayAnimationDuration: Duration(milliseconds: 300),
                   ),
-                  items: imgs.map((i) {
+                  items: perfumes.take(15).map((item) {
                     return Builder(
                       builder: (BuildContext context) {
                         return Container(
@@ -70,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Color(0xCDD9A071).withOpacity(0.2),
                                 BlendMode.darken,
                               ),
-                              image: AssetImage(i),
+                              image: AssetImage(item['image']!),
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -113,13 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                const SizedBox(height: 35),
+                const SizedBox(height: 5),
 
                 SizedBox(
                   height: 500,
                   child: GridView.builder(
                     shrinkWrap: true,
-                    itemCount: imgs.length,
+                    itemCount: perfumes.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       crossAxisSpacing: 5,
@@ -127,10 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       childAspectRatio: 0.8,
                     ),
                     itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: customPhoto(imgs[index]),
-                      );
+                      // التأكد من جلب البيانات بشكل صحيح لمنع الـ null
+                      final String imagePath = perfumes[index]['image'] ?? '';
+                      final String perfumeName = perfumes[index]['name'] ?? '';
+
+                      return customPhoto(imagePath, perfumeName);
                     },
                   ),
                 ),
@@ -139,27 +146,101 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+       bottomNavigationBar: SalomonBottomBar(
+        backgroundColor: ColorClass.backG,
+          currentIndex: _currentIndex,
+          onTap: (i) => setState(() => _currentIndex = i),
+          items: [
+            /// Home
+            SalomonBottomBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home"),
+              selectedColor: Colors.purple,
+            ),
+
+            /// Likes
+            SalomonBottomBarItem(
+              icon: Icon(Icons.favorite_border),
+              title: Text("Likes"),
+              selectedColor: Colors.pink,
+            ),
+
+            /// Search
+            SalomonBottomBarItem(
+              icon: Icon(Icons.search),
+              title: Text("Search"),
+              selectedColor: Colors.orange,
+            ),
+
+            /// Profile
+            SalomonBottomBarItem(
+              icon: Icon(Icons.person),
+              title: Text("Profile"),
+              selectedColor: Colors.teal,
+            ),
+          ],
+        ),
     );
   }
 
-  Widget customPhoto(String imgs) {
-    return Card(
-      elevation: 20,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Container(
-          height: 100,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            image: DecorationImage(
-              image: NetworkImage(imgs),
-              fit: BoxFit.cover,
-            ),
+  Widget customPhoto(String imgs, String name) {
+    return Column(
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFD9A071).withOpacity(0.15),
+                      blurRadius: 20,
+                      spreadRadius: 3,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Image.asset(imgs, fit: BoxFit.contain),
+                ),
+              ),
+              Positioned(
+                top: 0.2,
+                right: 0.2,
+                child: IconButton(
+                  iconSize: 20,
+                  onPressed: () {
+                    setState(() {
+                      changeColor = !changeColor;
+                    });
+                  },
+                  icon: changeColor
+                      ? Icon(Icons.favorite_rounded, color: Colors.grey)
+                      : Icon(Icons.favorite_rounded, color: Colors.red),
+                ),
+              ),
+            ],
           ),
         ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+          name,
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Averia',
+            color: Color(0xFF4A4A4A),
+          ),
+        ),
+      ],
     );
   }
 }
