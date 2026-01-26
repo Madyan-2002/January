@@ -10,7 +10,7 @@ final List<String> categories = [
 
 final List<Map<String, String>> perfumes = [
   {'image': 'assets/images/1.jpeg', 'name': 'L’INSTANT HOME'},
-  {'image': 'assets/images/2.jpeg', 'name': 'DOLCE & GABBANA'},
+  {'image': 'assets/images/2.jpeg', 'name': 'Dior Homme'},
   {'image': 'assets/images/3.jpeg', 'name': 'GIVENCHY'},
   {'image': 'assets/images/4.jpeg', 'name': 'ARMANI BEAUTY'},
   {'image': 'assets/images/5.jpeg', 'name': 'Sauvage '},
@@ -26,15 +26,22 @@ final List<Map<String, String>> perfumes = [
   {'image': 'assets/images/15.jpeg', 'name': 'Libre Intense Eau de Parfum'},
 ];
 
-// class Perfume {
-//   final String name;
-//   final String image;
-//   final double price;
+class PerfumeModel {
+  final String image;
+  final String name;
+  final double price;
+  final String describtion;
+  final bool isFav;
 
-//   Perfume({required this.name, required this.image, this.price = 0.0});
-// }
+  PerfumeModel({
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.describtion,
+    this.isFav = false,
+  });
+}
 
-// List<Perfume> perfumesList = [
-//   Perfume(name: 'DOLCE & GABBANA', image: 'assets/images/1.jpeg', price: 250.0),
-//   Perfume(name: 'Sauvage', image: 'assets/images/5.jpeg', price: 300.0),
-// ];
+List<PerfumeModel> perfumesList = [
+ // PerfumeModel(image: image, name: name, price: price, describtion: describtion),
+];
