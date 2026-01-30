@@ -6,9 +6,11 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final String? counter;
   final String? hlp;
-  final IconData preIcon;
+  final Widget preIcon;
   final Widget? sfxIcon;
-  final bool obscureT ;
+  final bool obscureT;
+  final String? Function (String?)? valid;
+
 
   const CustomTextField({
     super.key,
@@ -20,11 +22,13 @@ class CustomTextField extends StatelessWidget {
     required this.preIcon,
     this.sfxIcon,
     this.obscureT = false,
+    this.valid,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: valid,
       keyboardType: keyType,
       obscureText: obscureT,
       decoration: InputDecoration(
@@ -37,7 +41,7 @@ class CustomTextField extends StatelessWidget {
         ),),
         hint: Text(hint),
         counterText: counter,
-        prefixIcon: Icon(preIcon),
+        prefixIcon: preIcon,
         suffixIcon: sfxIcon
       ),
       

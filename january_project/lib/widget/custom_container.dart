@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:january_project/styles/color_class.dart';
 
 class CustomContainer extends StatelessWidget {
   final String text;
@@ -15,7 +16,7 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: isSelected ? const Color(0xFFB65B07) : const Color(0xCDD9A071),
+      color: isSelected ? ColorClass.mad : Color.fromARGB(150, 27, 104, 125),
       borderRadius: BorderRadius.circular(15),
       child: InkWell(
         borderRadius: BorderRadius.circular(15),

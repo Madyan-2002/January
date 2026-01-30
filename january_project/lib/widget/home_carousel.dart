@@ -8,13 +8,14 @@ class HomeCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return CarouselSlider(
       options: CarouselOptions(
-        height: 250,
+        height: height * 0.40,
         autoPlay: true,
         autoPlayAnimationDuration: Duration(milliseconds: 300),
       ),
-      items: perfumes.take(15).map((item) {
+      items:  perfumesList.take(15).map((item) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
@@ -35,7 +36,7 @@ class HomeCarousel extends StatelessWidget {
                     Color(0xCDD9A071).withOpacity(0.2),
                     BlendMode.darken,
                   ),
-                  image: AssetImage(item['image']!),
+                  image: AssetImage(item.image),
                   fit: BoxFit.fill,
                 ),
               ),
