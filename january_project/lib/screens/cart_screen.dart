@@ -12,7 +12,6 @@ class CartScreen extends StatefulWidget {
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
-
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class _CartScreenState extends State<CartScreen> {
                         background: Container(
                           alignment: Alignment.centerRight,
                           padding: const EdgeInsets.only(right: 20),
-                          margin: const EdgeInsets.symmetric(vertical: 8), // ليتناسب مع الكارت
+                          margin: const EdgeInsets.symmetric(vertical: 8), 
                           decoration: BoxDecoration(
                             color: Colors.redAccent,
                             borderRadius: BorderRadius.circular(15),
@@ -46,7 +45,6 @@ class _CartScreenState extends State<CartScreen> {
                           setState(() {
                             widget.cart.removeAt(index);
                           });
-                          // تنبيه بسيط عند الحذف
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text("${item.name} removed from cart"), duration: const Duration(seconds: 1)),
                           );
@@ -56,7 +54,6 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 ),
-                // حاوية السعر الإجمالي
                 _buildTotalSection(),
               ],
             ),

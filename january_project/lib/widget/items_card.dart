@@ -13,10 +13,10 @@ class ItemsCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(25), 
+        borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08), 
+            color: Colors.black.withOpacity(0.08),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -33,11 +33,11 @@ class ItemsCard extends StatelessWidget {
                   width: double.infinity,
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF9F9F9), // خلفية تبرز المنتج
+                    color: const Color(0xFFF9F9F9),
                     borderRadius: BorderRadius.circular(18),
                   ),
                   child: Hero(
-                    tag: perfume.image, // لإضافة حركة انسيابية عند الضغط
+                    tag: perfume.image,
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Image.asset(perfume.image, fit: BoxFit.contain),
@@ -45,17 +45,18 @@ class ItemsCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // 2. النصوص (الاسم والسعر)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12.0,
+                  vertical: 6.0,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       perfume.name,
                       maxLines: 1,
-                      overflow: TextOverflow.ellipsis, 
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -69,7 +70,7 @@ class ItemsCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: ColorClass.price, 
+                        color: ColorClass.price,
                         fontFamily: 'Averia',
                       ),
                     ),
@@ -91,9 +92,7 @@ class ItemsCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(color: Colors.black12, blurRadius: 4),
-                  ],
+                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
                 ),
                 child: Icon(
                   context.watch<FavoriteProvider>().isFavorite(perfume)
