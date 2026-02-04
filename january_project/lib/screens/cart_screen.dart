@@ -12,6 +12,7 @@ class CartScreen extends StatefulWidget {
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
+
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,6 @@ class _CartScreenState extends State<CartScreen> {
                     itemCount: widget.cart.length,
                     itemBuilder: (context, index) {
                       final item = widget.cart[index];
-
                       return Dismissible(
                         key: UniqueKey(),
                         direction: DismissDirection.endToStart,
@@ -54,6 +54,7 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                 ),
+                // حاوية السعر الإجمالي
                 _buildTotalSection(),
               ],
             ),

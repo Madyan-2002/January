@@ -15,6 +15,7 @@ class PerfumeModel {
   final String description;
   final bool isFav;
   final String category;
+  // int quantity;
 
   PerfumeModel({
     required this.image,
@@ -23,6 +24,7 @@ class PerfumeModel {
     required this.description,
     this.isFav = false,
     required this.category,
+    // this.quantity = 1,
   });
 
   // PerfumeModel copyWith({
