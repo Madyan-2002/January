@@ -84,13 +84,25 @@ class _NavBarState extends State<NavBar> {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 15),
-          child: CircleAvatar(
-            radius: 18,
-            backgroundColor: Colors.white24,
-            child: const Icon(
-              Icons.notifications_none,
-              color: Colors.white,
-              size: 20,
+          child: InkWell(
+            onTap: () {
+              if (index == 1) {}
+              if (index == 3) {}
+            },
+            child: CircleAvatar(
+              radius: 18,
+              backgroundColor: Colors.white24,
+              child: Icon(
+                index == 1
+                    ? Icons.format_list_bulleted
+                    : index == 2
+                    ? Icons.settings
+                    : index == 3
+                    ? Icons.delete_sweep
+                    : Icons.notifications_none,
+                color: Colors.white,
+                size: 20,
+              ),
             ),
           ),
         ),

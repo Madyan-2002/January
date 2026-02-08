@@ -24,14 +24,14 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: height * 0.30,
+                    height: height * 0.25,
                     child: Lottie.network(
                       'https://assets9.lottiefiles.com/packages/lf20_mjlh3hcy.json',
                       frameBuilder: (context, child, composition) {
@@ -39,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 10),
                   const Text(
                     "Welcome Back",
                     style: TextStyle(
@@ -47,12 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.black87,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 8),
                   Text(
                     "Log in to your account to continue",
                     style: TextStyle(color: Colors.grey[600], fontSize: 14),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
 
                   // حقل البريد الإلكتروني
                   CustomTextField(
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hint: 'name@example.com',
                     preIcon: const Icon(Icons.email_outlined),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
 
                   CustomTextField(
                     valid: (value) {
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text("Forgot Password?"),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
 
                   SizedBox(
                     width: double.infinity,
@@ -128,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
 
                   SizedBox(
                     width: double.infinity,
@@ -157,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

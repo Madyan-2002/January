@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:january_project/Model/perfume_model.dart';
 import 'package:january_project/screens/details_screen.dart';
+import 'package:january_project/screens/notification_screen.dart';
 import 'package:january_project/styles/color_class.dart';
 import 'package:january_project/widget/custom_container.dart';
 import 'package:january_project/widget/custom_text_field.dart';
@@ -65,8 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 "Find Your Treasure",
                                 style: TextStyle(
-                                  color: Colors.grey[600], // لون أهدأ
-                                  fontSize: 13, // حجم أصغر قليلاً
+                                  color: Colors.grey[600],
+                                  fontSize: 13,
                                   letterSpacing: 0.5,
                                 ),
                               ),
@@ -74,19 +75,18 @@ class _HomeScreenState extends State<HomeScreen> {
                               const Text(
                                 "One Piece Store",
                                 style: TextStyle(
-                                  fontSize: 26, // تكبير العنوان الرئيسي
-                                  fontWeight:
-                                      FontWeight.w900, // خط عريض جداً للهوية
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w900,
                                   fontFamily: 'Averia',
                                 ),
                               ),
                             ],
                           ),
-                          // Notification Icon inside a soft circle
+
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              shape: BoxShape.circle, // شكل دائري أرقى
+                              shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withOpacity(0.03),
@@ -101,7 +101,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: ColorClass.icons,
                                 size: 28,
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NotificationsScreen(),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -115,9 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         hint: "Find your signature scent...",
                         preIcon: Icon(
                           Icons.search_rounded,
-                          color: ColorClass.icons.withOpacity(
-                            0.6,
-                          ),
+                          color: ColorClass.icons.withOpacity(0.6),
                         ),
                         onChanged: (value) {
                           setState(() {

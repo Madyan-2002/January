@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.pushReplacement(
           context,
@@ -34,17 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // const Text(
-              //   "ONE PIECE",
-              //   style: TextStyle(
-              //     color: Colors
-              //         .white,
-              //     fontSize: 32,
-              //     letterSpacing: 8,
-              //     fontWeight: FontWeight.w300,
-              //     fontFamily: "Averia",
-              //   ),
-              // ),
               const SizedBox(height: 70),
               const CircularProgressIndicator(
                 color: Colors.white70,
